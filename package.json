@@ -1,0 +1,29 @@
+{
+  "name": "agro-toolbox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "🌾 Suite de ferramentas e calculadoras para o agronegócio brasileiro",
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=api & npm run dev --workspace=web",
+    "dev:api": "npm run dev --workspace=api",
+    "dev:web": "npm run dev --workspace=web",
+    "test": "npm run test --workspaces --if-present",
+    "test:api": "npm run test --workspace=api",
+    "test:web": "npm run test --workspace=web",
+    "build": "npm run build --workspace=web",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "keywords": [
+    "agro",
+    "calculadora",
+    "ferramentas",
+    "agronegocio",
+    "brasil"
+  ],
+  "author": "felipesauer",
+  "license": "MIT"
+}
