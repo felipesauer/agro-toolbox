@@ -4,8 +4,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![CI](https://github.com/felipesauer/agro-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/felipesauer/agro-toolbox/actions/workflows/ci.yml)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/felipesauer/agro-toolbox/pulls)
 
 ---
 
