@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
 import ResultPanel from '../../ui/ResultPanel';
-import { useCalculation } from '../../../hooks/useCalculation';
+import { useAutoCalculation } from '../../../hooks/useAutoCalculation';
 
 const UNIDADES = [
   { value: 'hectare', label: 'Hectare (ha)' },
@@ -21,13 +21,14 @@ export default function ConversorMedidas() {
   const [valor, setValor] = useState('');
   const [de, setDe] = useState('');
   const [para, setPara] = useState('');
-  const { data, loading, error, calculate } = useCalculation('/agronomica/conversor-medidas');
+  const inputs = useMemo(() => ({ valor: Number(valor), de, para }), [valor, de, para]);
+  const { data, loading, error, calculate } = useAutoCalculation('/agronomica/conversor-medidas', inputs, {
+    isReady: (v) => v.valor && v.de && v.para,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (valor && de && para) {
-      calculate({ valor: Number(valor), de, para });
-    }
+    if (valor && de && para) calculate(inputs);
   };
 
   return (

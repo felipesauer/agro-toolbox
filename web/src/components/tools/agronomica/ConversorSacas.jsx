@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
 import ResultPanel from '../../ui/ResultPanel';
-import { useCalculation } from '../../../hooks/useCalculation';
+import { useAutoCalculation } from '../../../hooks/useAutoCalculation';
 
 const UNIDADES = [
   { value: 'sacas', label: 'Sacas' },
@@ -26,13 +26,14 @@ export default function ConversorSacas() {
   const [de, setDe] = useState('');
   const [para, setPara] = useState('');
   const [cultura, setCultura] = useState('');
-  const { data, loading, error, calculate } = useCalculation('/agronomica/conversor-sacas');
+  const inputs = useMemo(() => ({ valor: Number(valor), de, para, cultura }), [valor, de, para, cultura]);
+  const { data, loading, error, calculate } = useAutoCalculation('/agronomica/conversor-sacas', inputs, {
+    isReady: (v) => v.valor && v.de && v.para && v.cultura,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (valor && de && para && cultura) {
-      calculate({ valor: Number(valor), de, para, cultura });
-    }
+    if (valor && de && para && cultura) calculate(inputs);
   };
 
   return (
