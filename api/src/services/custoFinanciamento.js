@@ -2,7 +2,7 @@ import { round } from '../utils/formatters.js';
 
 export function calcularCustoFinanciamento({
   valorFinanciamento, taxaAnual, prazoMeses, carenciaMeses = 0,
-  sistemaAmortizacao, tarifaBancaria = 0,
+  sistemaAmortizacao, tarifaBancaria = 0, iof = 0,
 }) {
   const taxaMensal = (1 + taxaAnual / 100) ** (1 / 12) - 1;
   const mesesAmortizacao = prazoMeses - carenciaMeses;
@@ -11,12 +11,15 @@ export function calcularCustoFinanciamento({
   let totalJuros = 0;
   let totalPago = tarifaBancaria;
 
+  // IOF (simplificado — alíquota sobre valor financiado)
+  const valorIof = round(valorFinanciamento * (iof / 100), 2);
+  totalPago += valorIof;
+
   for (let i = 1; i <= prazoMeses; i++) {
     const juros = saldoDevedor * taxaMensal;
     totalJuros += juros;
 
     if (i <= carenciaMeses) {
-      // Carência — só juros
       parcelas.push({
         mes: i,
         amortizacao: 0,
@@ -52,6 +55,13 @@ export function calcularCustoFinanciamento({
     });
   }
 
+  const custoEfetivo = totalPago - valorFinanciamento;
+
+  // CET — Custo Efetivo Total (taxa anual equivalente)
+  const cetAnual = prazoMeses > 0
+    ? ((totalPago / valorFinanciamento) ** (12 / prazoMeses) - 1) * 100
+    : 0;
+
   return {
     sistemaAmortizacao,
     valorFinanciamento,
@@ -60,9 +70,13 @@ export function calcularCustoFinanciamento({
     prazoMeses,
     carenciaMeses,
     tarifaBancaria,
+    iof: valorIof,
     totalJuros: round(totalJuros, 2),
     totalPago: round(totalPago, 2),
-    custoEfetivo: round(totalPago - valorFinanciamento, 2),
+    custoEfetivo: round(custoEfetivo, 2),
+    cetAnual: round(cetAnual, 2),
+    primeiraParcela: parcelas[0]?.parcela,
+    ultimaParcela: parcelas[parcelas.length - 1]?.parcela,
     parcelas,
   };
 }
