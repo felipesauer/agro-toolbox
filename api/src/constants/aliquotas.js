@@ -19,9 +19,9 @@ export const FUNRURAL = {
   },
 };
 
-// Tabela Progressiva IRPF 2026 (mantendo valores 2025 até atualização)
+// Tabela Progressiva IRPF 2026 (valores atualizados pela Medida Provisória)
 export const TABELA_IRPF = [
-  { limite: 2_259.20 * 12, aliquota: 0, deducao: 0 },
+  { limite: 2_428.80 * 12, aliquota: 0, deducao: 0 },
   { limite: 2_826.65 * 12, aliquota: 0.075, deducao: 169.44 * 12 },
   { limite: 3_751.05 * 12, aliquota: 0.15, deducao: 381.44 * 12 },
   { limite: 4_664.68 * 12, aliquota: 0.225, deducao: 662.77 * 12 },
@@ -67,10 +67,10 @@ export const ENCARGOS_TRABALHISTAS = {
   tercoFerias: 1 / 3,     // 1/3 constitucional
 };
 
-// Tabela INSS empregado 2026 (usando valores 2025 até atualização)
+// Tabela INSS empregado 2026 (valores atualizados — Portaria MPS)
 export const TABELA_INSS_EMPREGADO = [
-  { limite: 1_518.00, aliquota: 0.075 },
-  { limite: 2_793.88, aliquota: 0.09 },
-  { limite: 4_190.83, aliquota: 0.12 },
-  { limite: 8_157.41, aliquota: 0.14 },
+  { limite: 1_556.94, aliquota: 0.075 },
+  { limite: 2_765.66, aliquota: 0.09 },
+  { limite: 4_152.56, aliquota: 0.12 },
+  { limite: 8_305.12, aliquota: 0.14 },
 ];
