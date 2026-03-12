@@ -75,6 +75,9 @@ export const FERRAMENTAS = [
   { slug: 'simulador-cbs-ibs', nome: 'Simulador CBS/IBS', descricao: 'Simula tributos da reforma tributária sobre operações agro', categoria: 'reforma', endpoint: '/reforma/simulador-cbs-ibs' },
   { slug: 'consultor-ncm', nome: 'Consultor NCM Agro', descricao: 'Consulta informações tributárias por NCM', categoria: 'reforma', endpoint: '/reforma/consultor-ncm' },
   { slug: 'credito-presumido', nome: 'Crédito Presumido PF', descricao: 'Calcula crédito presumido para produtor pessoa física', categoria: 'reforma', endpoint: '/reforma/credito-presumido' },
+  { slug: 'classificacao-tributaria', nome: 'Classificação Tributária', descricao: 'Consulta classificações tributárias CBS/IBS por NCM e DFe', categoria: 'reforma', endpoint: '/reforma/classificacao-tributaria' },
+  { slug: 'validador-xml-rtc', nome: 'Validador XML RTC', descricao: 'Valida campos da Reforma Tributária do Consumo em XML de NFe', categoria: 'reforma', endpoint: '/reforma/validador-xml-rtc' },
+  { slug: 'consulta-aliquotas', nome: 'Consulta Alíquotas CBS/IBS', descricao: 'Consulta alíquotas CBS e IBS por UF no período de transição', categoria: 'reforma', endpoint: '/reforma/aliquotas' },
 
   // Logística
   { slug: 'quebra-frete', nome: 'Quebra de Frete', descricao: 'Calcula tolerância de quebra no transporte de grãos', categoria: 'logistica', endpoint: '/logistica/quebra-frete' },

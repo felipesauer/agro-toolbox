@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { CATEGORIAS, FERRAMENTAS } from '../data/categorias';
 import ToolCard from '../components/Layout/ToolCard';
+import Breadcrumb from '../components/Layout/Breadcrumb';
 
 export default function CategoryPage() {
   const { slug } = useParams();
@@ -21,9 +22,7 @@ export default function CategoryPage() {
   return (
     <div>
       <div className="mb-8">
-        <Link to="/" className="text-sm text-green-600 hover:underline">
-          ← Voltar
-        </Link>
+        <Breadcrumb items={[{ label: `${categoria.icone} ${categoria.nome}` }]} />
         <h1 className="text-2xl font-bold text-gray-800 mt-2">
           {categoria.icone} {categoria.nome}
         </h1>
