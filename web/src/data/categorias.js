@@ -33,7 +33,7 @@ export const CATEGORIAS = [
     slug: 'logistica',
     nome: 'Logística',
     icone: '🚚',
-    descricao: 'Quebra de frete e tolerância de peso',
+    descricao: 'Custo de frete, capacidade de carga e tolerância de peso',
   },
 ];
 
@@ -81,4 +81,6 @@ export const FERRAMENTAS = [
 
   // Logística
   { slug: 'quebra-frete', nome: 'Quebra de Frete', descricao: 'Calcula tolerância de quebra no transporte de grãos', categoria: 'logistica', endpoint: '/logistica/quebra-frete' },
+  { slug: 'custo-frete', nome: 'Custo de Frete', descricao: 'Calcula custo do frete por tonelada e por saca', categoria: 'logistica', endpoint: '/logistica/custo-frete' },
+  { slug: 'capacidade-carga', nome: 'Capacidade de Carga', descricao: 'Calcula número de viagens e aproveitamento do caminhão', categoria: 'logistica', endpoint: '/logistica/capacidade-carga' },
 ];

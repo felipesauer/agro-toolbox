@@ -39,6 +39,8 @@ const toolComponents = {
   'consulta-aliquotas': lazy(() => import('./reforma/ConsultaAliquotas.jsx')),
   // Logística
   'quebra-frete': lazy(() => import('./logistica/QuebraFrete.jsx')),
+  'custo-frete': lazy(() => import('./logistica/CustoFrete.jsx')),
+  'capacidade-carga': lazy(() => import('./logistica/CapacidadeCarga.jsx')),
 };
 
 export default toolComponents;
