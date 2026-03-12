@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Input from '../../ui/Input';
 import ResultPanel from '../../ui/ResultPanel';
-import { useCalculation } from '../../../hooks/useCalculation';
+import { useAutoCalculation } from '../../../hooks/useAutoCalculation';
 
 export default function PesoArroba() {
   const [pesoVivo, setPesoVivo] = useState('');
   const [rendimento, setRendimento] = useState('50');
-  const { data, loading, error, calculate } = useCalculation('/pecuaria/peso-arroba');
+  const inputs = useMemo(() => ({ pesoVivo: Number(pesoVivo), rendimentoCarcaca: Number(rendimento) }), [pesoVivo, rendimento]);
+  const { data, loading, error, calculate } = useAutoCalculation('/pecuaria/peso-arroba', inputs, {
+    isReady: (v) => v.pesoVivo > 0,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    calculate({ pesoVivo: Number(pesoVivo), rendimentoCarcaca: Number(rendimento) });
+    calculate(inputs);
   };
 
   return (
