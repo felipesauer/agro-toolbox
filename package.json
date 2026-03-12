@@ -15,7 +15,8 @@
     "test:api": "npm run test --workspace=api",
     "test:web": "npm run test --workspace=web",
     "build": "npm run build --workspace=web",
-    "lint": "npm run lint --workspaces --if-present"
+    "lint": "npm run lint --workspaces --if-present",
+    "postinstall": "patch-package"
   },
   "keywords": [
     "agro",
@@ -25,5 +26,8 @@
     "brasil"
   ],
   "author": "felipesauer",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "patch-package": "^8.0.1"
+  }
 }
