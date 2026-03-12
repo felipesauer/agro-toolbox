@@ -1,7 +1,7 @@
 import { FUNRURAL } from '../constants/aliquotas.js';
 import { round } from '../utils/formatters.js';
 
-export function calcularRetencaoFunrural({ valorBruto, tipoPessoa, optanteFolha = false }) {
+export function calcularRetencaoFunrural({ valorBruto, tipoPessoa, optanteFolha = false, numOperacoesAno = 1 }) {
   if (optanteFolha) {
     return {
       valorBruto,
@@ -28,6 +28,11 @@ export function calcularRetencaoFunrural({ valorBruto, tipoPessoa, optanteFolha 
     senar,
     totalRetido,
     valorLiquido: round(valorBruto - totalRetido, 2),
+    projecaoAnual: numOperacoesAno > 1 ? {
+      operacoes: numOperacoesAno,
+      totalRetidoAnual: round(totalRetido * numOperacoesAno, 2),
+      valorBrutoAnual: round(valorBruto * numOperacoesAno, 2),
+    } : undefined,
     detalhamento: {
       funrural: `${aliquotas.funrural * 100}%`,
       rat: `${aliquotas.rat * 100}%`,
