@@ -1,16 +1,18 @@
 import { useState, useCallback } from 'react';
 import client from '../api/client';
 
-export function useCalculation(endpoint) {
+export function useCalculation(endpoint, { method = 'post' } = {}) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const calculate = useCallback(async (inputs) => {
+  const calculate = useCallback(async (inputs, overrideUrl) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await client.post(endpoint, inputs);
+      const response = method === 'get'
+        ? await client.get(overrideUrl || endpoint)
+        : await client.post(endpoint, inputs);
       setData(response.data);
       return response.data;
     } catch (err) {
@@ -19,7 +21,7 @@ export function useCalculation(endpoint) {
     } finally {
       setLoading(false);
     }
-  }, [endpoint]);
+  }, [endpoint, method]);
 
   const reset = useCallback(() => {
     setData(null);

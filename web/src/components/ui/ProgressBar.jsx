@@ -12,10 +12,10 @@ export default function ProgressBar({ percentual = 0, status = 'tranquilo' }) {
   return (
     <div className="w-full">
       <div className="flex justify-between text-sm mb-1">
-        <span className="text-gray-600">{percentual.toFixed(1)}%</span>
+        <span className="text-gray-600 dark:text-gray-400">{percentual.toFixed(1)}%</span>
         <span className="capitalize font-medium">{status}</span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-4">
+      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
         <div
           className={`h-4 rounded-full transition-all duration-500 ${cor}`}
           style={{ width: `${largura}%` }}
