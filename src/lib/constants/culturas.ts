@@ -1,0 +1,158 @@
+export interface CulturaData {
+  nome: string;
+  pesoSaca: number | null;
+  cicloMedio: number;
+  variedades: Record<string, { ciclo: number }>;
+  umidadePadrao: number | null;
+  impurezaPadrao: number | null;
+  fatorUmidade: number | null;
+  fatorImpureza: number | null;
+}
+
+export const CULTURAS: Record<string, CulturaData> = {
+  soja: {
+    nome: "Soja",
+    pesoSaca: 60,
+    cicloMedio: 120,
+    variedades: { precoce: { ciclo: 100 }, medio: { ciclo: 120 }, tardio: { ciclo: 140 } },
+    umidadePadrao: 14,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  milho: {
+    nome: "Milho",
+    pesoSaca: 60,
+    cicloMedio: 130,
+    variedades: { precoce: { ciclo: 110 }, medio: { ciclo: 130 }, safrinha: { ciclo: 120 } },
+    umidadePadrao: 14,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  trigo: {
+    nome: "Trigo",
+    pesoSaca: 60,
+    cicloMedio: 120,
+    variedades: { precoce: { ciclo: 100 }, medio: { ciclo: 120 } },
+    umidadePadrao: 13,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  cafe: {
+    nome: "Café",
+    pesoSaca: 60,
+    cicloMedio: 365,
+    variedades: {},
+    umidadePadrao: 12,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  algodao: {
+    nome: "Algodão",
+    pesoSaca: 20.42,
+    cicloMedio: 180,
+    variedades: {},
+    umidadePadrao: 12,
+    impurezaPadrao: 2,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  arroz: {
+    nome: "Arroz",
+    pesoSaca: 60,
+    cicloMedio: 130,
+    variedades: { precoce: { ciclo: 100 }, medio: { ciclo: 130 } },
+    umidadePadrao: 13,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  feijao: {
+    nome: "Feijão",
+    pesoSaca: 60,
+    cicloMedio: 90,
+    variedades: { precoce: { ciclo: 75 }, medio: { ciclo: 90 } },
+    umidadePadrao: 14,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  sorgo: {
+    nome: "Sorgo",
+    pesoSaca: 60,
+    cicloMedio: 110,
+    variedades: { granifero: { ciclo: 110 }, forrageiro: { ciclo: 100 } },
+    umidadePadrao: 14,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  girassol: {
+    nome: "Girassol",
+    pesoSaca: 40,
+    cicloMedio: 110,
+    variedades: { precoce: { ciclo: 90 }, medio: { ciclo: 110 } },
+    umidadePadrao: 11,
+    impurezaPadrao: 2,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  amendoim: {
+    nome: "Amendoim",
+    pesoSaca: 25,
+    cicloMedio: 130,
+    variedades: { rasteiro: { ciclo: 130 }, ereto: { ciclo: 100 } },
+    umidadePadrao: 8,
+    impurezaPadrao: 2,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  canola: {
+    nome: "Canola",
+    pesoSaca: 60,
+    cicloMedio: 140,
+    variedades: { precoce: { ciclo: 115 }, medio: { ciclo: 140 } },
+    umidadePadrao: 9,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  cana_de_acucar: {
+    nome: "Cana-de-açúcar",
+    pesoSaca: null,
+    cicloMedio: 365,
+    variedades: { planta: { ciclo: 540 }, soca: { ciclo: 365 } },
+    umidadePadrao: null,
+    impurezaPadrao: null,
+    fatorUmidade: null,
+    fatorImpureza: null,
+  },
+  aveia: {
+    nome: "Aveia",
+    pesoSaca: 40,
+    cicloMedio: 120,
+    variedades: { branca: { ciclo: 120 }, preta: { ciclo: 110 } },
+    umidadePadrao: 13,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+  cevada: {
+    nome: "Cevada",
+    pesoSaca: 60,
+    cicloMedio: 120,
+    variedades: { precoce: { ciclo: 100 }, medio: { ciclo: 120 } },
+    umidadePadrao: 13,
+    impurezaPadrao: 1,
+    fatorUmidade: 1.0,
+    fatorImpureza: 1.0,
+  },
+};
+
+export const CULTURAS_OPTIONS = Object.entries(CULTURAS).map(([key, c]) => ({
+  value: key,
+  label: c.nome,
+}));
