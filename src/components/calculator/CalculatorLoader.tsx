@@ -159,6 +159,8 @@ const CALCULATORS: Record<string, React.ComponentType> = {
   ),
 };
 
+import { CalculatorSlugProvider } from "./CalculatorContext";
+
 export function CalculatorLoader({ slug }: CalculatorLoaderProps) {
   const Calculator = CALCULATORS[slug];
 
@@ -172,7 +174,9 @@ export function CalculatorLoader({ slug }: CalculatorLoaderProps) {
 
   return (
     <div className="rounded-xl border bg-card p-6 shadow-sm">
-      <Calculator />
+      <CalculatorSlugProvider slug={slug}>
+        <Calculator />
+      </CalculatorSlugProvider>
     </div>
   );
 }
