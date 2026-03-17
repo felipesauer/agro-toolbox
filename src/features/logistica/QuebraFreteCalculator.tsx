@@ -67,7 +67,7 @@ export default function QuebraFreteCalculator() {
           <ResultRow label="Tolerância" value={`${result.tolerancia}%`} />
           <ResultRow label="Quebra excedente" value={`${result.quebraExcedente} kg`} />
           {result.valorPrejuizo !== undefined && (
-            <ResultRow label="Valor do prejuízo" value={formatBRL(result.valorPrejuizo as number)} />
+            <ResultRow label="Valor do prejuízo" value={formatBRL(result.valorPrejuizo)} />
           )}
           {result.quebraAtipica && (
             <div className="col-span-2 text-sm text-orange-600 dark:text-orange-400">

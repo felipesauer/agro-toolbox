@@ -3,12 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { CATEGORIAS, getFerramentasByCategoria } from "@/data/ferramentas";
 import { cn } from "@/lib/utils";
 
-const categoriaSize: Record<string, string> = {
-  fiscal: "sm:col-span-2",
-  agronomica: "sm:col-span-2",
-  reforma: "sm:col-span-2",
-};
-
 export function CategoriesGrid() {
   return (
     <section id="categorias" className="py-16 sm:py-20 bg-background">
@@ -27,7 +21,6 @@ export function CategoriesGrid() {
           {CATEGORIAS.map((cat, index) => {
             const Icon = cat.icon;
             const ferramentas = getFerramentasByCategoria(cat.slug);
-            const isLarge = categoriaSize[cat.slug];
 
             return (
               <Link
@@ -39,8 +32,7 @@ export function CategoriesGrid() {
                   "p-6 transition-all duration-200",
                   "hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5",
                   "hover:-translate-y-0.5",
-                  isLarge && "lg:col-span-1",
-                  (index === 0 || index === 3) && "lg:col-span-2"
+                  (index === 0 || index === CATEGORIAS.length - 1) && "lg:col-span-2"
                 )}
               >
                 {/* Icon + count */}

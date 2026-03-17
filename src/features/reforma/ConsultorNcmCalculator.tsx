@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { consultarNcm, listarNcms } from "@/lib/calculators/reforma/consultorNcm";
+import { consultarNcm } from "@/lib/calculators/reforma/consultorNcm";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -17,15 +17,10 @@ const CESTA_BADGE = {
 export default function ConsultorNcmCalculator() {
   const [ncm, setNcm] = useState("1201");
   const [result, setResult] = useState<ReturnType<typeof consultarNcm> | null>(null);
-  const [capitulos, setCapitulos] = useState<string[]>([]);
 
   const handleSearch = () => {
     const r = consultarNcm(ncm);
     setResult(r);
-    if (r.encontrado) {
-      const caps = Array.from(new Set(listarNcms().map((n) => n.capitulo))).sort();
-      setCapitulos(caps);
-    }
   };
 
   return (

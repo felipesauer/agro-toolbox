@@ -20,7 +20,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { ferramenta: slug } = await params;
   const ferramenta = getFerramenta(slug);
-  const categoria = ferramenta ? getCategoria(ferramenta.categoria) : null;
 
   if (!ferramenta) return {};
 

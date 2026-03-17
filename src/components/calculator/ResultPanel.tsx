@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { BarChart3, Printer, Share2, Copy, Check } from "lucide-react";
+import { BarChart3, Printer, Share2, Check } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

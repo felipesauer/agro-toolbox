@@ -46,8 +46,8 @@ export default function DepreciacaoCalculator() {
         <ResultPanel title="Depreciação Anual">
           {'depreciacaoAnual' in result && (
             <>
-              <ResultRow label="Depreciação anual" value={formatBRL(result.depreciacaoAnual as number)} highlight />
-              <ResultRow label="Depreciação mensal" value={formatBRL(result.depreciacaoMensal as number)} />
+              <ResultRow label="Depreciação anual" value={formatBRL(result.depreciacaoAnual ?? 0)} highlight />
+              <ResultRow label="Depreciação mensal" value={formatBRL(result.depreciacaoMensal ?? 0)} />
             </>
           )}
           <ResultRow label="Valor atual" value={formatBRL(result.valorAtual)} />

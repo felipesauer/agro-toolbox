@@ -46,13 +46,13 @@ export default function QuebraPesoNotaCalculator() {
       {result && (
         <ResultPanel title="Quebra de Peso na Nota">
           <ResultRow label="Diferença de peso" value={`${result.diferenca} kg`} highlight />
-          <ResultRow label="Valor complementar" value={formatBRL(result.valorComplementar as number)} />
-          <ResultRow label="ICMS complementar" value={formatBRL(result.icmsComplementar as number)} />
+          <ResultRow label="Valor complementar" value={formatBRL(result.valorComplementar ?? 0)} />
+          <ResultRow label="ICMS complementar" value={formatBRL(result.icmsComplementar ?? 0)} />
           {result.funruralComplementar !== undefined && (
-            <ResultRow label="FUNRURAL complementar" value={formatBRL(result.funruralComplementar as number)} />
+            <ResultRow label="FUNRURAL complementar" value={formatBRL(result.funruralComplementar)} />
           )}
-          <ResultRow label="Total impostos" value={formatBRL(result.totalImpostosComplementar as number)} />
-          <ResultRow label="Valor líquido complementar" value={formatBRL(result.valorLiquidoComplementar as number)} />
+          <ResultRow label="Total impostos" value={formatBRL(result.totalImpostosComplementar ?? 0)} />
+          <ResultRow label="Valor líquido complementar" value={formatBRL(result.valorLiquidoComplementar ?? 0)} />
         </ResultPanel>
       )}
     </div>

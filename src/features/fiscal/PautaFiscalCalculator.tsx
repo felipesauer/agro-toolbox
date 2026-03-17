@@ -62,11 +62,11 @@ export default function PautaFiscalCalculator() {
               {result.usouPauta ? "Pauta aplicada" : "Preço de venda usado"}
             </Badge>
           </div>
-          <ResultRow label="Base de cálculo" value={formatBRL(result.baseCalculo as number)} highlight />
+          <ResultRow label="Base de cálculo" value={formatBRL(result.baseCalculo)} highlight />
           <ResultRow label="Base unitária (R$/ton)" value={`R$ ${result.baseUnitaria}`} />
           <ResultRow label="Valor da pauta (R$/ton)" value={`R$ ${result.valorPauta}`} />
           {result.usouPauta && (
-            <ResultRow label="Diferença ajustada" value={formatBRL(result.diferencaPauta as number)} />
+            <ResultRow label="Diferença ajustada" value={formatBRL(result.diferencaPauta ?? 0)} />
           )}
           {result.vigenciaPauta && (
             <ResultRow label="Vigência da pauta" value={result.vigenciaPauta as string} />

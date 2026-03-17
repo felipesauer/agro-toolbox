@@ -45,13 +45,13 @@ export default function EstimativaItrCalculator() {
 
       {result && (
         <ResultPanel title="Estimativa do ITR">
-          <ResultRow label="ITR estimado" value={formatBRL(result.itrEstimado as number)} highlight />
+          <ResultRow label="ITR estimado" value={formatBRL(result.itrEstimado)} highlight />
           <ResultRow label="Grau de utilização" value={`${result.grauUtilizacao}%`} />
           <ResultRow label="Faixa de área" value={result.faixaArea as string} />
           <ResultRow label="Faixa GU" value={result.faixaGU as string} />
           <ResultRow label="Alíquota" value={`${result.aliquota}%`} />
-          <ResultRow label="VTN tributável" value={formatBRL(result.vtnTributavel as number)} />
-          <ResultRow label="ITR por hectare" value={formatBRL(result.itrPorHa as number)} />
+          <ResultRow label="VTN tributável" value={formatBRL(result.vtnTributavel)} />
+          <ResultRow label="ITR por hectare" value={formatBRL(result.itrPorHa)} />
         </ResultPanel>
       )}
     </div>

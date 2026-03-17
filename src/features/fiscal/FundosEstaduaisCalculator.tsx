@@ -59,7 +59,7 @@ export default function FundosEstaduaisCalculator() {
           {result.valorFundo !== undefined ? (
             <>
               <ResultRow label="Fundo" value={result.fundo as string} />
-              <ResultRow label="Valor do fundo" value={formatBRL(result.valorFundo as number)} highlight />
+              <ResultRow label="Valor do fundo" value={formatBRL(result.valorFundo)} highlight />
               <ResultRow label="Valor por unidade" value={`R$ ${result.valorPorUnidade} ${result.unidade}`} />
               <ResultRow label="% sobre operação" value={`${result.percentualSobreOperacao}%`} />
             </>

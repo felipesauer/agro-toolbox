@@ -46,7 +46,7 @@ export default function PesoArrobaCalculator() {
       {result && (
         <ResultPanel title="Peso e Valor em Arrobas">
           <ResultRow label="Arrobas" value={`${result.arrobas} @`} highlight />
-          <ResultRow label="Valor total" value={formatBRL(result.valorTotal as number)} highlight />
+          <ResultRow label="Valor total" value={formatBRL(result.valorTotal ?? 0)} highlight />
           <ResultRow label="Rendimento carcaça" value={`${result.rendimentoCarcaca}%`} />
           <ResultRow label="Peso carcaça" value={`${result.pesoCarcaca} kg`} />
         </ResultPanel>

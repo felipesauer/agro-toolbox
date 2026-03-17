@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { FERRAMENTAS, getCategoria } from "@/data/ferramentas";
+import { FERRAMENTAS } from "@/data/ferramentas";
 import { ToolCard } from "@/components/layout/ToolCard";
 
 const SLUGS_DESTAQUE = [
@@ -30,7 +30,7 @@ export function FeaturedTools() {
             </p>
           </div>
           <Link
-            href="/"
+            href="#categorias"
             className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-primary hover:underline shrink-0"
           >
             Ver todas
@@ -46,7 +46,7 @@ export function FeaturedTools() {
 
         <div className="mt-6 text-center sm:hidden">
           <Link
-            href="/"
+            href="#categorias"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
           >
             Ver todas as ferramentas

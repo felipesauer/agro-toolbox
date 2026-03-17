@@ -4,18 +4,18 @@ import Link from "next/link";
 import { ArrowRight, Github, TrendingUp, Shield, Wifi } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { CATEGORIAS } from "@/data/ferramentas";
 
 interface HeroSectionProps {
   toolCount: number;
 }
 
-const stats = [
-  { value: "31", label: "Ferramentas", icon: TrendingUp },
-  { value: "6", label: "Categorias", icon: Shield },
-  { value: "100%", label: "Gratuito", icon: Wifi },
-];
-
 export function HeroSection({ toolCount }: HeroSectionProps) {
+  const stats = [
+    { value: String(toolCount), label: "Ferramentas", icon: TrendingUp },
+    { value: String(CATEGORIAS.length), label: "Categorias", icon: Shield },
+    { value: "100%", label: "Gratuito", icon: Wifi },
+  ];
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700">
       {/* Mesh gradient overlay */}

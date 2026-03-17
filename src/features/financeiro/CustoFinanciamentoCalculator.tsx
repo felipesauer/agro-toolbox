@@ -49,11 +49,11 @@ export default function CustoFinanciamentoCalculator() {
 
       {result && (
         <ResultPanel title="Custo do Financiamento">
-          <ResultRow label="Custo total (juros)" value={formatBRL(result.totalJuros as number)} highlight />
-          <ResultRow label="Montante total" value={formatBRL(result.totalPago as number)} />
-          <ResultRow label="Primeira parcela" value={formatBRL(result.primeiraParcela as number)} />
+          <ResultRow label="Custo total (juros)" value={formatBRL(result.totalJuros)} highlight />
+          <ResultRow label="Montante total" value={formatBRL(result.totalPago)} />
+          <ResultRow label="Primeira parcela" value={formatBRL(result.primeiraParcela)} />
           {result.ultimaParcela !== undefined && (
-            <ResultRow label="Última parcela" value={formatBRL(result.ultimaParcela as number)} />
+            <ResultRow label="Última parcela" value={formatBRL(result.ultimaParcela)} />
           )}
           <ResultRow label="CET anual" value={`${result.cetAnual}%`} />
         </ResultPanel>
