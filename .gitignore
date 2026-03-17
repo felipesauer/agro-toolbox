@@ -30,3 +30,6 @@ npm-debug.log*
 
 # Next
 .next/
+
+# TypeScript
+tsconfig.tsbuildinfo
