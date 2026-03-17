@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { FERRAMENTAS, CATEGORIAS, getCategoria } from "@/data/ferramentas";
+import { FERRAMENTAS, getCategoria } from "@/data/ferramentas";
 import { cn } from "@/lib/utils";
 
 interface CommandPaletteProps {
@@ -14,7 +14,9 @@ interface CommandPaletteProps {
 
 export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
+  const listRef = useRef<HTMLDivElement>(null);
 
   const filtered = useCallback(() => {
     if (!query.trim()) return FERRAMENTAS.slice(0, 8);
@@ -28,13 +30,54 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     ).slice(0, 12);
   }, [query]);
 
+  const results = filtered();
+
+  // Reset selection when query or results change
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query]);
+
+  // Reset state when dialog closes
+  useEffect(() => {
+    if (!open) {
+      setQuery("");
+      setSelectedIndex(0);
+    }
+  }, [open]);
+
   const handleSelect = (slug: string) => {
     router.push(`/ferramenta/${slug}`);
     onOpenChange(false);
     setQuery("");
   };
 
-  const results = filtered();
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (results.length === 0) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev + 1) % results.length);
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev - 1 + results.length) % results.length);
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (results[selectedIndex]) {
+          handleSelect(results[selectedIndex].slug);
+        }
+        break;
+    }
+  };
+
+  // Scroll selected item into view
+  useEffect(() => {
+    if (!listRef.current) return;
+    const items = listRef.current.querySelectorAll("[data-command-item]");
+    items[selectedIndex]?.scrollIntoView({ block: "nearest" });
+  }, [selectedIndex]);
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
@@ -50,6 +93,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[20%]",
             "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[20%]"
           )}
+          onKeyDown={handleKeyDown}
         >
           <DialogPrimitive.Title className="sr-only">
             Buscar ferramenta
@@ -71,7 +115,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
           </div>
 
           {/* Results */}
-          <div className="max-h-80 overflow-y-auto p-2">
+          <div ref={listRef} className="max-h-80 overflow-y-auto p-2">
             {results.length === 0 ? (
               <p className="py-8 text-center text-sm text-muted-foreground">
                 Nenhuma ferramenta encontrada para &ldquo;{query}&rdquo;
@@ -84,14 +128,20 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                   </p>
                 )}
                 <div className="space-y-0.5">
-                  {results.map((ferramenta) => {
+                  {results.map((ferramenta, index) => {
                     const categoria = getCategoria(ferramenta.categoria);
                     const Icon = categoria?.icon;
                     return (
                       <button
                         key={ferramenta.slug}
+                        data-command-item
                         onClick={() => handleSelect(ferramenta.slug)}
-                        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm hover:bg-accent transition-colors group"
+                        className={cn(
+                          "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors group",
+                          index === selectedIndex
+                            ? "bg-accent text-accent-foreground"
+                            : "hover:bg-accent"
+                        )}
                       >
                         {Icon && (
                           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -139,3 +189,4 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     </DialogPrimitive.Root>
   );
 }
+
