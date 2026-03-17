@@ -6,6 +6,7 @@ import { calcularRetencaoFunrural } from "@/lib/calculators/fiscal/retencaoFunru
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NativeSelect as Select } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { ResultPanel, ResultRow } from "@/components/calculator/ResultPanel";
 import { formatBRL } from "@/lib/utils";
 
@@ -43,12 +44,10 @@ export default function RetencaoFunruralCalculator() {
         </div>
         {inputs.tipoPessoa === "PF" && (
           <div className="flex items-center gap-2">
-            <input
+            <Checkbox
               id="optanteFolha"
-              type="checkbox"
               checked={inputs.optanteFolha}
-              onChange={(e) => setInputs((p) => ({ ...p, optanteFolha: e.target.checked }))}
-              className="w-4 h-4"
+              onCheckedChange={(checked: boolean | "indeterminate") => setInputs((p) => ({ ...p, optanteFolha: checked === true }))}
             />
             <Label htmlFor="optanteFolha">Optante pela folha de pagamento</Label>
           </div>
@@ -57,13 +56,13 @@ export default function RetencaoFunruralCalculator() {
 
       {result && (
         <ResultPanel title="Retenção FUNRURAL">
-          <ResultRow label="Total retido" value={formatBRL(result.totalRetido as number)} highlight />
-          <ResultRow label="Valor líquido" value={formatBRL(result.valorLiquido as number)} />
-          <ResultRow label="RAT/SENAR" value={formatBRL(result.rat as number)} />
+          <ResultRow label="Total retido" value={formatBRL(result.totalRetido ?? 0)} highlight />
+          <ResultRow label="Valor líquido" value={formatBRL(result.valorLiquido ?? 0)} />
+          <ResultRow label="RAT/SENAR" value={formatBRL(result.rat ?? 0)} />
           {result.funrural !== undefined && !inputs.optanteFolha && (
-            <ResultRow label="FUNRURAL (Previdência)" value={formatBRL(result.funrural as number)} />
+            <ResultRow label="FUNRURAL (Previdência)" value={formatBRL(result.funrural)} />
           )}
-          <ResultRow label="SENAR" value={formatBRL(result.senar as number)} />
+          <ResultRow label="SENAR" value={formatBRL(result.senar ?? 0)} />
         </ResultPanel>
       )}
     </div>
