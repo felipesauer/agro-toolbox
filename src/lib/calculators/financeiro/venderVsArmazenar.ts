@@ -20,7 +20,7 @@ export function calcularVenderVsArmazenar({
   quebraTecnica = 0,
 }: VenderVsArmazenarInput) {
   const receitaVendaImediata = quantidade * precoAtual;
-  const custoArmazenagem = custoArmazenagemMes * mesesArmazenagem;
+  const custoArmazenagem = custoArmazenagemMes * quantidade * mesesArmazenagem;
   const perdaQuebra = quantidade * (quebraTecnica / 100) * precoFuturo;
   const custoOportunidade =
     receitaVendaImediata * (taxaOportunidade / 100 / 12) * mesesArmazenagem;
