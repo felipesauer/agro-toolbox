@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Github, Leaf, ExternalLink } from "lucide-react";
-import { CATEGORIAS, getFerramentasByCategoria } from "@/data/ferramentas";
+import { CATEGORIAS } from "@/data/ferramentas";
 import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
@@ -106,7 +106,7 @@ export function Footer() {
               </li>
               <li>
                 <span className="text-sm text-primary-300">
-                  Funciona offline (PWA)
+                  Sem cadastro necessário
                 </span>
               </li>
               <li>
