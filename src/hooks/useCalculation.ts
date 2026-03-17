@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useReducer } from "react";
+import { useCalculatorSlug } from "@/components/calculator/CalculatorContext";
 
 interface CalculationState<T, R> {
   data: R | null;
@@ -44,6 +45,9 @@ export function useCalculation<T, R>(
     onSuccess?: (result: R, inputs: T) => void;
   }
 ) {
+  const contextSlug = useCalculatorSlug();
+  const slug = options?.toolSlug || contextSlug;
+
   const [state, dispatch] = useReducer(reducer<T, R>, {
     data: null,
     loading: false,
@@ -60,17 +64,18 @@ export function useCalculation<T, R>(
         options?.onSuccess?.(result, inputs);
 
         // Save to history
-        if (options?.toolSlug) {
+        if (slug) {
           try {
-            const key = `agrotoolbox:history:${options.toolSlug}`;
+            const key = "agrotoolbox:historico";
             const existing = JSON.parse(localStorage.getItem(key) ?? "[]");
             const entry = {
-              id: Date.now(),
-              timestamp: new Date().toISOString(),
+              id: String(Date.now()),
+              slug: slug,
+              timestamp: Date.now(),
               inputs,
               result,
             };
-            const updated = [entry, ...existing].slice(0, 20);
+            const updated = [entry, ...existing].slice(0, 50);
             localStorage.setItem(key, JSON.stringify(updated));
           } catch {
             // silent
@@ -83,7 +88,7 @@ export function useCalculation<T, R>(
         });
       }
     },
-    [calcFn, options]
+    [calcFn, options, slug]
   );
 
   const reset = useCallback(() => dispatch({ type: "RESET" }), []);
