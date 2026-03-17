@@ -1,5 +1,11 @@
 # 🌾 AgroToolbox
 
+> ⚠️ **Aviso Importante: Projeto Arquivado**
+> 
+> Olá! Bem-vindo ao repositório do AgroToolbox. Gostaríamos de informar que este projeto foi criado exclusivamente para fins de **estudo, teste e aprendizado**. Portanto, **não é recomendado para uso em produção ou como fonte fiel** para cálculos reais no dia a dia.
+> 
+> Atualmente, este repositório encontra-se **arquivado**. A estrutura do código acabou se tornando bastante complexa e difícil de manter, o que motivou a paralisação das atualizações. Sinta-se totalmente à vontade para explorar, realizar forks e usar o código como material de estudo, mas tenha em mente essas limitações!
+
 > Suite de ferramentas e calculadoras para o agronegócio brasileiro.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
